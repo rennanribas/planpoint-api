@@ -2,18 +2,9 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ClientsModule } from './clients/clients.module';
-import { SlotsModule } from './slots/slots.module';
 import { AppointmentsModule } from './appointment/appointment.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ClientController } from './clients/clients.controller';
-import { AppointmentsController } from './appointment/appointment.controller';
-import { SlotController } from './slots/slots.controller';
-import { ClientService } from './clients/clients.service';
-import { SlotService } from './slots/slots.service';
-import { AppointmentsService } from './appointment/appointment.service';
-import { Appointment } from './appointment/appointment.entity/appointment.entity';
-import { Client } from './clients/client.entity/client.entity';
-import { Slot } from './slots/slot.entity/slot.entity';
+import { TeamsModule } from './teams/teams.module';
 
 @Module({
   imports: [
@@ -30,8 +21,8 @@ import { Slot } from './slots/slot.entity/slot.entity';
       synchronize: false,
 }),
     ClientsModule,
-    SlotsModule,
     AppointmentsModule,
+    TeamsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -2,15 +2,18 @@ import {
     Entity,
     PrimaryGeneratedColumn,
     Column,
-    OneToOne,
     ManyToOne,
+    OneToMany,
+    Generated,
   } from 'typeorm';
   import { Client } from './client.entity';
+import { Appointment } from 'src/appointment/appointment.entity/appointment.entity';
   
-  @Entity('addresses')
+  @Entity('Addresses')
   export class Address {
-      @PrimaryGeneratedColumn()
-      id: number;
+      @PrimaryGeneratedColumn('uuid')
+      @Generated('uuid')
+      id: string;
   
       @Column({ type: 'text' })
       streetAddress: string;
@@ -26,5 +29,8 @@ import {
   
       @ManyToOne(() => Client, client => client.addresses)
       client: Client;
+
+      @OneToMany(() => Appointment, appointment => appointment.address)
+      appointments: Appointment[];
   }
   

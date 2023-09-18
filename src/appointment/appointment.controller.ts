@@ -31,4 +31,9 @@ export class AppointmentsController {
     remove(@Param('id') id: number): Promise<void> {
         return this.appointmentsService.remove(id);
     }
+
+    @Get('address/:id')
+    async findAppointmentsByAddress(@Param('id') id: string): Promise<Appointment[]> {
+      return await this.appointmentsService.findAppointmentsByAddress(id);
+  }
 }

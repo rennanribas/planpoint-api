@@ -1,15 +1,14 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Client } from './client.entity/client.entity';  // Ensure the path is correct
-import { CreateClientDto, UpdateClientDto } from './client.dto';  // Ensure you create these DTOs
+import { Client } from './client.entity/client.entity';
+import { CreateClientDto, UpdateClientDto } from './client.dto'; 
 import { Address } from './client.entity/address.entity';
-
 @Injectable()
 export class ClientService {
   constructor(
     @InjectRepository(Client)
-    private clientRepository: Repository<Client>,
+    private clientRepository: Repository<Client>
   ) {}
 
   async create(createClientDto: CreateClientDto): Promise<Client> {
@@ -19,20 +18,22 @@ export class ClientService {
     client.email = createClientDto.email;
     client.phoneNumber = createClientDto.phoneNumber;
 
-    if (!createClientDto.addresses) {
-      throw new BadRequestException('Addresses must be provided.');
+    if (!createClientDto.addresses || createClientDto.addresses.length === 0) {
+      throw new BadRequestException('At least one address must be provided.');
     }
-    
-    const addresses = new Address();
-    addresses.streetAddress = createClientDto.addresses.streetAddress;
-    addresses.city = createClientDto.addresses.city;
-    addresses.state = createClientDto.addresses.state;
-    addresses.zipCode = createClientDto.addresses.zipCode;
-    
-    client.addresses = [addresses];
+
+    client.addresses = createClientDto.addresses.map(addressDto => {
+        const address = new Address();
+        address.streetAddress = addressDto.streetAddress;
+        address.city = addressDto.city;
+        address.state = addressDto.state;
+        address.zipCode = addressDto.zipCode;
+        return address;
+    });
 
     return await this.clientRepository.save(client);
-  }
+}
+
 
   findAll(): Promise<Client[]> {
     return this.clientRepository.find({ relations: ['addresses'] });

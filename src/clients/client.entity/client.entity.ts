@@ -3,19 +3,13 @@ import {
     PrimaryGeneratedColumn,
     Column,
     OneToMany,
-    OneToOne,
-    JoinColumn,
   } from 'typeorm';
-  import { Slot } from '../../slots/slot.entity/slot.entity';
   import { Address } from './address.entity';
   
-  @Entity('clients')
+  @Entity('Clients')
   export class Client {
-      @PrimaryGeneratedColumn()
-      id: number;
-  
-      @Column({ type: 'uuid', default: () => 'uuid_generate_v4()' })
-      uid: string;
+      @PrimaryGeneratedColumn('uuid')
+      id: string;
   
       @Column({ length: 100 })
       name: string;
@@ -30,10 +24,5 @@ import {
         cascade: true,
       })
       addresses: Address[];
-  
-      @OneToMany(() => Slot, slot => slot.client, {
-          cascade: true,
-      })
-      slots: Slot[];
   }
   

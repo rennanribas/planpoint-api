@@ -1,14 +1,16 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { EntityManager, Repository } from 'typeorm';
 import { Appointment } from './appointment.entity/appointment.entity';
 import { CreateAppointmentDto, UpdateAppointmentDto } from './appointment.dto';
+import { Address } from 'src/clients/client.entity/address.entity';
 
 @Injectable()
 export class AppointmentsService {
     constructor(
         @InjectRepository(Appointment)
         private appointmentsRepository: Repository<Appointment>,
+        private readonly entityManager: EntityManager
     ) {}
 
     findAll(): Promise<Appointment[]> {
@@ -36,5 +38,17 @@ export class AppointmentsService {
 
     async remove(id: number): Promise<void> {
         await this.appointmentsRepository.delete(id);
+    }
+
+    async findAppointmentsByAddress(addressId: string): Promise<Appointment[]> {
+        const addressWithAppointments = await this.entityManager.findOne(Address, addressId, {
+          relations: ['appointments']
+        });
+    
+        if (!addressWithAppointments) {
+            throw new NotFoundException(`Address with ID ${addressId} not found`);
+        }
+    
+        return addressWithAppointments.appointments;
     }
 }

@@ -1,12 +1,13 @@
 export class CreateAppointmentDto {
-    startDate: Date;
-    endDate: Date;
-    slotDurationMinutes: number;
-  }
-  
-  export class UpdateAppointmentDto {
-    startDate?: Date;
-    endDate?: Date;
-    slotDurationMinutes?: number;
-  }
-  
+  startDate: Date;
+  endDate: Date;
+  comments: string;
+  addressId: string;
+}
+
+export class UpdateAppointmentDto {
+  startDate?: Date;
+  endDate?: Date;
+  comments?: string;
+  addressId?: string; 
+}
