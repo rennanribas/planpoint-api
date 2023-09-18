@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  cleaning-schedule-api-postgres:
+    image: postgres:latest
+    container_name: cleaning-schedule-api-postgres-1
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
