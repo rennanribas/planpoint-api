@@ -6,6 +6,7 @@ import {
   JoinColumn
 } from 'typeorm';
 import { Address } from '../../clients/client.entity/address.entity'; 
+import { Team } from 'src/teams/team.entity/team.entity';
 
 @Entity('Appointments')
 export class Appointment {
@@ -18,12 +19,19 @@ export class Appointment {
     @Column({ type: 'timestamp', name: 'endDate' })
     endDate: Date;
 
-    @Column({ type: 'text', nullable: true }) // nullable é opcional, dependendo se você quer permitir comentários vazios ou não.
+    @Column({ type: 'text', nullable: true }) 
     comments: string;
 
     @ManyToOne(() => Address)
     address: Address;
 
-    @Column({ type: 'uuid' })  // Se for UUID
+    @Column({ type: 'uuid' })
     addressId: string;
+
+
+    @ManyToOne(() => Team)
+    team: Team;
+
+    @Column({ type: 'uuid' })
+    teamId: string;
 }
