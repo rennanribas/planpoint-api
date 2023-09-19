@@ -12,7 +12,7 @@ CREATE TABLE "Clients" (
 -- Create Addresses table
 CREATE TABLE "Addresses" (
     "id" UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    "clientId" UUID REFERENCES "Clients"("id") ON DELETE CASCADE,  -- Corrigido para UUID
+    "clientId" UUID REFERENCES "Clients"("id") ON DELETE CASCADE,
     "streetAddress" TEXT,
     "city" VARCHAR(255),
     "state" VARCHAR(100),
@@ -20,12 +20,12 @@ CREATE TABLE "Addresses" (
 );
 
 CREATE TABLE "Teams" (
+    "id" SERIAL PRIMARY KEY,
     "id" UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     "name" VARCHAR(255) NOT NULL,
     "description" TEXT
 );
 
--- Create Appointments table
 CREATE TABLE "Appointments" (
     "id" SERIAL PRIMARY KEY,
     "startDate" DATE NOT NULL,
@@ -33,4 +33,14 @@ CREATE TABLE "Appointments" (
     "comments" TEXT,
     "addressId" UUID REFERENCES "Addresses"("id") ON DELETE CASCADE,
     "teamId" UUID REFERENCES "Teams"("id") ON DELETE CASCADE
+);
+
+CREATE TYPE week_day AS ENUM ('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday');
+
+CREATE TABLE "Availabilities" (
+    "id" SERIAL PRIMARY KEY,
+    "day" week_day NOT NULL,
+    "startTime" TIME NOT NULL,
+    "endTime" TIME NOT NULL
+    "teamId" UUID REFERENCES "Teams"("id") ON DELETE CASCADE,
 );

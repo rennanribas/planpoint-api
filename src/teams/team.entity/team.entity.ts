@@ -1,10 +1,13 @@
 import { Appointment } from 'src/appointment/appointment.entity/appointment.entity';
+import { WeekDay } from 'src/enums';
 import {
     Entity,
     PrimaryGeneratedColumn,
     Column,
-    OneToMany
+    OneToMany,
+    ManyToMany
 } from 'typeorm';
+import { Availability } from './availability.entity';
 
 @Entity('Teams')
 export class Team {
@@ -19,4 +22,7 @@ export class Team {
 
     @OneToMany(() => Appointment, appointment => appointment.team)
     appointments: Appointment[];
+
+    @OneToMany(() => Availability, availability => availability.team, { cascade: true })
+    availabilities: Availability[];
 }
