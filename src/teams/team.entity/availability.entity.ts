@@ -1,5 +1,4 @@
-import { Appointment } from 'src/appointment/appointment.entity/appointment.entity';
-import { WeekDay } from 'src/enums';
+import { WeekDay } from '../../enums';
 import {
     Entity,
     PrimaryGeneratedColumn,

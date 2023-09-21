@@ -19,7 +19,7 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "db:start": "docker-compose up -d",
-    "db:seed": "ts-node ./seed.ts",
+    "db:seed": "ts-node ./src/seeders/seed.ts",
     "db:init": "npm run db:start && sleep 10 && npm run db:seed",
     "db:stop": "docker-compose down"
   },

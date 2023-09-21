@@ -1,4 +1,4 @@
-import { WeekDay } from "src/enums";
+import { WeekDay } from "../enums";
 
 export class CreateAvailabilityDto {
     day: WeekDay;

@@ -1,5 +1,5 @@
-import { Address } from 'src/clients/client.entity/address.entity';
-import { Client } from 'src/clients/client.entity/client.entity';
+import { Address } from '../clients/client.entity/address.entity';
+import { Client } from '../clients/client.entity/client.entity';
 import { Connection } from 'typeorm';
 import { v4 as uuidv4 } from 'uuid';
 

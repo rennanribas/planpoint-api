@@ -6,7 +6,7 @@ import {
   JoinColumn
 } from 'typeorm';
 import { Address } from '../../clients/client.entity/address.entity'; 
-import { Team } from 'src/teams/team.entity/team.entity';
+import { Team } from '../../teams/team.entity/team.entity';
 
 @Entity('Appointments')
 export class Appointment {

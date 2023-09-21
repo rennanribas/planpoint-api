@@ -8,6 +8,7 @@ export const appDataSource = new DataSource({
     username: 'root',  // Database username
     password: 'clean123',  // Database password
     database: 'cleaning_schedule_db',  // Database name
+    entities: [__dirname + '/../**/*.entity{.ts,.js}']
  });
 
  const main = async () => {
