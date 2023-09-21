@@ -10,8 +10,8 @@ import { Team } from 'src/teams/team.entity/team.entity';
 
 @Entity('Appointments')
 export class Appointment {
-    @PrimaryGeneratedColumn('uuid')
-    id: string;
+    @PrimaryGeneratedColumn()
+    id: number;
 
     @Column({ type: 'timestamp', name: 'startDate' })
     startDate: Date;

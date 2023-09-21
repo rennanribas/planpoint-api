@@ -5,8 +5,8 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 CREATE TABLE "Clients" (
     "id" UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     "name" VARCHAR(255) NOT NULL,
-    "email" VARCHAR(255),
-    "phoneNumber" VARCHAR(255)
+    "email" VARCHAR(255) UNIQUE,
+    "phoneNumber" VARCHAR(255) UNIQUE
 );
 
 -- Create Addresses table
@@ -20,7 +20,6 @@ CREATE TABLE "Addresses" (
 );
 
 CREATE TABLE "Teams" (
-    "id" SERIAL PRIMARY KEY,
     "id" UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     "name" VARCHAR(255) NOT NULL,
     "description" TEXT
@@ -41,6 +40,6 @@ CREATE TABLE "Availabilities" (
     "id" SERIAL PRIMARY KEY,
     "day" week_day NOT NULL,
     "startTime" TIME NOT NULL,
-    "endTime" TIME NOT NULL
-    "teamId" UUID REFERENCES "Teams"("id") ON DELETE CASCADE,
+    "endTime" TIME NOT NULL,
+    "teamId" UUID REFERENCES "Teams"("id") ON DELETE CASCADE
 );

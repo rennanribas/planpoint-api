@@ -15,7 +15,7 @@ export class TeamService {
     }
 
     findOne(id: string): Promise<Team> {
-        return this.teamRepository.findOne(id);
+        return this.teamRepository.findOne({ where: { id } });
     }
 
     async create(team: Team): Promise<Team> {
@@ -24,7 +24,7 @@ export class TeamService {
 
     async update(id: string, team: Team): Promise<Team> {
         await this.teamRepository.update(id, team);
-        return this.teamRepository.findOne(id);
+        return this.teamRepository.findOne({ where: { id } });
     }
 
     async delete(id: string): Promise<void> {

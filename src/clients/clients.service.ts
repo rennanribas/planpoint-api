@@ -39,16 +39,16 @@ export class ClientService {
     return this.clientRepository.find({ relations: ['addresses'] });
   }
 
-  async findOne(id: number): Promise<Client> {
-    return this.clientRepository.findOne(id, { relations: ['addresses'] });
+  async findOne(id: string): Promise<Client> {
+    return this.clientRepository.findOne({ where: { id: id } });
   }
 
-  async update(id: number, dto: UpdateClientDto): Promise<Client> {
+  async update(id: string, dto: UpdateClientDto): Promise<Client> {
     await this.clientRepository.update(id, dto);
     return this.findOne(id);
   }
 
-  remove(id: number): Promise<void> {
+  remove(id: string): Promise<void> {
     return this.clientRepository.delete(id).then(() => {});
   }
 }

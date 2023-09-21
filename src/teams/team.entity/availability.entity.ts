@@ -11,8 +11,8 @@ import { Team } from './team.entity';
 
 @Entity('Availability')
 export class Availability {
-    @PrimaryGeneratedColumn('uuid')
-    id: string;
+    @PrimaryGeneratedColumn()
+    id: number;
 
     @Column({ type: 'enum', enum: WeekDay })
     day: WeekDay;

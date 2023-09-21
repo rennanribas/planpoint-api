@@ -41,9 +41,11 @@ export class AppointmentsService {
     }
 
     async findAppointmentsByAddress(addressId: string): Promise<Appointment[]> {
-        const addressWithAppointments = await this.entityManager.findOne(Address, addressId, {
-          relations: ['appointments']
+        const addressWithAppointments = await this.entityManager.findOne(Address, {
+            where: { id: addressId },
+            relations: ['appointments']
         });
+        
     
         if (!addressWithAppointments) {
             throw new NotFoundException(`Address with ID ${addressId} not found`);
