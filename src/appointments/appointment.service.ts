@@ -61,18 +61,16 @@ export class AppointmentsService {
             where: {
                 team: { id: teamId }
             },
-            relations: ['address', 'team']  // Adicione relações conforme necessário
+            relations: ['address', 'team']
         });
     
         if (!appointments || appointments.length === 0) {
             throw new NotFoundException(`No appointments found for team with ID ${teamId}`);
         }
     
-        // Manipular os resultados para esconder detalhes dos endereços
-        // que não correspondem ao addressId fornecido
         for (const appointment of appointments) {
             if (appointment.address.id !== addressId) {
-                appointment.address = null;  // ou use 'undefined' se preferir
+                appointment.address = null;
             }
         }
     

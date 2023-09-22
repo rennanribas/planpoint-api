@@ -13,7 +13,7 @@ export class CreateTeamDto {
 }
 
 export class UpdateAvailabilityDto {
-    id?: string;  // Optional, in case you want to update by ID
+    id?: string;
     day?: WeekDay;
     startTime?: string;
     endTime?: string;

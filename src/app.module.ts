@@ -17,7 +17,6 @@ import { TeamModule } from './teams/teams.module';
       database: 'cleaning_schedule_db',  // Database name
       entities: [__dirname + '/../**/*.entity{.ts,.js}'],
 
-      // Synchronize should be turned off in production for safety!
       synchronize: false,
 }),
     ClientModule,
