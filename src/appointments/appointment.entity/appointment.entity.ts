@@ -7,7 +7,6 @@ import {
 } from 'typeorm';
 import { Address } from '../../clients/client.entity/address.entity'; 
 import { Team } from '../../teams/team.entity/team.entity';
-import { Client } from '../../clients/client.entity/client.entity';
 
 @Entity('Appointments')
 export class Appointment {
@@ -23,7 +22,7 @@ export class Appointment {
     @Column({ type: 'text', nullable: true }) 
     comments: string;
 
-    @ManyToOne(() => Client, client => client.id)
+    @ManyToOne(() => Address, address => address.appointments)
     @JoinColumn({ name: 'addressId' })
     address: Address;
 
