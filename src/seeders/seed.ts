@@ -1,6 +1,7 @@
 import { DataSource } from 'typeorm';
 import ClientSeeder from './client.seeder'; 
 import TeamSeeder from './team.seeder';
+import AppointmentSeeder from './appointments.seeder';
 
 export const appDataSource = new DataSource({
     type: 'postgres',  // Database type
@@ -22,6 +23,9 @@ export const appDataSource = new DataSource({
 
     console.log('Seeding teams...');
     await TeamSeeder.run(appDataSource);
+
+    console.log('Seeding appointments...');
+    await AppointmentSeeder.run(appDataSource);
 
     console.log('Seeding complete!');
     await appDataSource.close();

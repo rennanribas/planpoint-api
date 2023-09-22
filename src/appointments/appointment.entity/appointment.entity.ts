@@ -7,6 +7,7 @@ import {
 } from 'typeorm';
 import { Address } from '../../clients/client.entity/address.entity'; 
 import { Team } from '../../teams/team.entity/team.entity';
+import { Client } from '../../clients/client.entity/client.entity';
 
 @Entity('Appointments')
 export class Appointment {
@@ -22,16 +23,11 @@ export class Appointment {
     @Column({ type: 'text', nullable: true }) 
     comments: string;
 
-    @ManyToOne(() => Address)
+    @ManyToOne(() => Client, client => client.id)
+    @JoinColumn({ name: 'addressId' })
     address: Address;
 
-    @Column({ type: 'uuid' })
-    addressId: string;
-
-
-    @ManyToOne(() => Team)
+    @ManyToOne(() => Team, team => team.id)
+    @JoinColumn({ name: 'teamId' })
     team: Team;
-
-    @Column({ type: 'uuid' })
-    teamId: string;
 }

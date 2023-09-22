@@ -1,4 +1,4 @@
-import { Appointment } from '../../appointment/appointment.entity/appointment.entity';
+import { Appointment } from '../../appointments/appointment.entity/appointment.entity';
 import {
     Entity,
     PrimaryGeneratedColumn,

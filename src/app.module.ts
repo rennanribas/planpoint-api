@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ClientModule } from './clients/clients.module';
-import { AppointmentsModule } from './appointment/appointment.module';
+import { AppointmentsModule } from './appointments/appointment.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TeamModule } from './teams/teams.module';
 

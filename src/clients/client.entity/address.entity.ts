@@ -7,7 +7,7 @@ import {
     Generated,
   } from 'typeorm';
   import { Client } from './client.entity';
-import { Appointment } from '../../appointment/appointment.entity/appointment.entity';
+import { Appointment } from '../../appointments/appointment.entity/appointment.entity';
   
   @Entity('Addresses')
   export class Address {
