@@ -4,7 +4,6 @@ import {
     PrimaryGeneratedColumn,
     Column,
     OneToMany,
-    ManyToMany
 } from 'typeorm';
 import { Availability } from './availability.entity';
 

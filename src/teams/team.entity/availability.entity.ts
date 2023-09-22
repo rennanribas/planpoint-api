@@ -3,8 +3,8 @@ import {
     Entity,
     PrimaryGeneratedColumn,
     Column,
-    OneToMany,
-    ManyToMany
+    ManyToMany,
+    JoinColumn
 } from 'typeorm';
 import { Team } from './team.entity';
 
@@ -23,6 +23,7 @@ export class Availability {
     endTime: string;
 
     @ManyToMany(() => Team, team => team.availabilities)
+    @JoinColumn({ name: 'teamId' })
     team: Team;
 }
 

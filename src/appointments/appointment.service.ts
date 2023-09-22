@@ -13,8 +13,10 @@ export class AppointmentsService {
         private readonly entityManager: EntityManager
     ) {}
 
-    findAll(): Promise<Appointment[]> {
-        return this.appointmentsRepository.find();
+    async findAll(): Promise<Appointment[]> {
+        return await this.appointmentsRepository.find({
+            relations: ['team', 'address']
+        });
     }
 
     async findOne(id: number): Promise<Appointment> {
