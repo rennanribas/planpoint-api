@@ -55,4 +55,27 @@ export class AppointmentsService {
     
         return addressWithAppointments.appointments;
     }
+
+    async findAppointmentsByAddressAndTeam(addressId: string, teamId: string): Promise<Appointment[]> {
+        const appointments = await this.entityManager.find(Appointment, {
+            where: {
+                team: { id: teamId }
+            },
+            relations: ['address', 'team']  // Adicione relações conforme necessário
+        });
+    
+        if (!appointments || appointments.length === 0) {
+            throw new NotFoundException(`No appointments found for team with ID ${teamId}`);
+        }
+    
+        // Manipular os resultados para esconder detalhes dos endereços
+        // que não correspondem ao addressId fornecido
+        for (const appointment of appointments) {
+            if (appointment.address.id !== addressId) {
+                appointment.address = null;  // ou use 'undefined' se preferir
+            }
+        }
+    
+        return appointments;
+    }
 }

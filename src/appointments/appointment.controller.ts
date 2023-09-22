@@ -35,5 +35,10 @@ export class AppointmentsController {
     @Get('address/:id')
     async findAppointmentsByAddress(@Param('id') id: string): Promise<Appointment[]> {
       return await this.appointmentsService.findAppointmentsByAddress(id);
-  }
+    }
+
+    @Get('address/:addressId/team/:teamId')
+    async findAppointmentsByAddresAndTeam(@Param('addressId') addreessId: string, @Param('teamId') teamId: string): Promise<Appointment[]> {
+      return await this.appointmentsService.findAppointmentsByAddressAndTeam(addreessId, teamId);
+    }
 }
