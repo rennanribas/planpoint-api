@@ -40,7 +40,7 @@ export class ClientService {
   }
 
   async findOne(id: string): Promise<Client> {
-    return this.clientRepository.findOne({ where: { id: id } });
+    return this.clientRepository.findOne({ where: { id: id }, relations: ['addresses'] });
   }
 
   async update(id: string, dto: UpdateClientDto): Promise<Client> {
