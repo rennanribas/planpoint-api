@@ -15,6 +15,8 @@ export default class TeamSeeder {
             team.name = `Team Alpha ${i}`;
             team.description = `Description for Team Alpha ${i}`;
 
+            const savedTeam = await connection.manager.save(team); // Salva o team primeiro
+
             const defaultStartTime = '09:00:00';
             const defaultEndTime = '18:00:00';
             const saturdayEndTime = '12:00:00';
@@ -26,14 +28,12 @@ export default class TeamSeeder {
                 availability.day = day;
                 availability.startTime = defaultStartTime;
                 availability.endTime = day === WeekDay.Saturday ? saturdayEndTime : defaultEndTime;
-                availability.team = team;
+                availability.team = savedTeam; // Aqui usamos o team já salvo
 
                 availabilities.push(availability);
             }
-            
-            team.availabilities = availabilities;
 
-            teams.push(team);
+            await connection.manager.save(availabilities); // Salva as availabilities
         }
 
         for (const team of teams) {

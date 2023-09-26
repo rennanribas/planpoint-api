@@ -12,12 +12,13 @@ export class TeamService {
 
     findAll(): Promise<Team[]> {
         return this.teamRepository.find({
-            select: ["id", "name", "description"]
+            select: ["id", "name", "description"], 
+            relations: ["availabilities"]
         });
     }
 
     findOne(id: number): Promise<Team> {
-        return this.teamRepository.findOne({ where: { id } });
+        return this.teamRepository.findOne({ where: { id }, relations: ["availabilities"] });
     }
 
     async create(team: Team): Promise<Team> {

@@ -58,6 +58,7 @@ export class AppointmentsService {
 
     async findAppointmentsByAddressAndTeam(addressId: string, teamId: number): Promise<Appointment[]> {
         const appointments = await this.entityManager.find(Appointment, {
+            select: ['id', 'startDate', 'endDate', 'address', 'comments'],
             where: {
                 team: { id: teamId }
             },
@@ -71,6 +72,7 @@ export class AppointmentsService {
         for (const appointment of appointments) {
             if (appointment.address.id !== addressId) {
                 appointment.address = null;
+                appointment.comments = null;
             }
         }
     
