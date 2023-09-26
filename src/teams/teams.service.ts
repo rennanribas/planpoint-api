@@ -11,10 +11,12 @@ export class TeamService {
     ) {}
 
     findAll(): Promise<Team[]> {
-        return this.teamRepository.find();
+        return this.teamRepository.find({
+            select: ["id", "name", "description"]
+        });
     }
 
-    findOne(id: string): Promise<Team> {
+    findOne(id: number): Promise<Team> {
         return this.teamRepository.findOne({ where: { id } });
     }
 
@@ -22,9 +24,9 @@ export class TeamService {
         return await this.teamRepository.save(team);
     }
 
-    async update(id: string, team: Team): Promise<Team> {
-        await this.teamRepository.update(id, team);
-        return this.teamRepository.findOne({ where: { id } });
+    async update(uuid: string, team: Team): Promise<Team> {
+        await this.teamRepository.update(uuid, team);
+        return this.teamRepository.findOne({ where: { uuid } });
     }
 
     async delete(id: string): Promise<void> {

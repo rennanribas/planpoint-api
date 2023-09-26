@@ -9,8 +9,11 @@ import { Availability } from './availability.entity';
 
 @Entity('Teams')
 export class Team {
-    @PrimaryGeneratedColumn('uuid')
-    id: string;
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column({ type: 'uuid', default: () => 'uuid_generate_v4()' })
+    uuid: string;
 
     @Column({ length: 255 })
     name: string;

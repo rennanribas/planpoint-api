@@ -20,7 +20,8 @@ CREATE TABLE "Addresses" (
 );
 
 CREATE TABLE "Teams" (
-    "id" UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    "id" SERIAL PRIMARY KEY,
+    "uuid" UUID UNIQUE DEFAULT uuid_generate_v4(),
     "name" VARCHAR(255) NOT NULL,
     "description" TEXT
 );
@@ -31,7 +32,7 @@ CREATE TABLE "Appointments" (
     "endDate" DATE NOT NULL,
     "comments" TEXT,
     "addressId" UUID REFERENCES "Addresses"("id") ON DELETE CASCADE,
-    "teamId" UUID REFERENCES "Teams"("id") ON DELETE CASCADE
+    "teamId" INTEGER REFERENCES "Teams"("id") ON DELETE CASCADE
 );
 
 CREATE TYPE week_day AS ENUM ('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday');
@@ -41,5 +42,5 @@ CREATE TABLE "Availabilities" (
     "day" week_day NOT NULL,
     "startTime" TIME NOT NULL,
     "endTime" TIME NOT NULL,
-    "teamId" UUID REFERENCES "Teams"("id") ON DELETE CASCADE
+    "teamId" INTEGER REFERENCES "Teams"("id") ON DELETE CASCADE
 );

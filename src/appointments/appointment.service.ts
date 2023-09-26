@@ -56,7 +56,7 @@ export class AppointmentsService {
         return addressWithAppointments.appointments;
     }
 
-    async findAppointmentsByAddressAndTeam(addressId: string, teamId: string): Promise<Appointment[]> {
+    async findAppointmentsByAddressAndTeam(addressId: string, teamId: number): Promise<Appointment[]> {
         const appointments = await this.entityManager.find(Appointment, {
             where: {
                 team: { id: teamId }

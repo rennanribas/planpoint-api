@@ -11,7 +11,7 @@ export default class TeamSeeder {
 
         for (let i = 1; i <= totalTeams; i++) {
             const team = new Team();
-            team.id = uuidv4();
+            team.uuid = uuidv4();
             team.name = `Team Alpha ${i}`;
             team.description = `Description for Team Alpha ${i}`;
 
