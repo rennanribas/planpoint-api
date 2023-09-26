@@ -21,6 +21,8 @@ export default class ClientSeeder {
       address1.city = 'Springfield';
       address1.state = 'IL';
       address1.zipCode = '62704';
+      address1.initialSessionDuration = '1 hour 30 mins'; 
+      address1.regularSessionDuration = '2 hours'; 
 
       const address2 = new Address();
       address2.id = uuidv4();
@@ -28,6 +30,8 @@ export default class ClientSeeder {
       address2.city = 'Shelbyville';
       address2.state = 'IL';
       address2.zipCode = '62521';
+      address2.initialSessionDuration = '1 hour 30 mins'; 
+      address2.regularSessionDuration = '2 hours';
 
       client.addresses = [address1, address2];
       clients.push(client);

@@ -1,7 +1,6 @@
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
--- Create Clients table
 CREATE TABLE "Clients" (
     "id" UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     "name" VARCHAR(255) NOT NULL,
@@ -9,14 +8,15 @@ CREATE TABLE "Clients" (
     "phoneNumber" VARCHAR(255) UNIQUE
 );
 
--- Create Addresses table
 CREATE TABLE "Addresses" (
     "id" UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     "clientId" UUID REFERENCES "Clients"("id") ON DELETE CASCADE,
     "streetAddress" TEXT,
     "city" VARCHAR(255),
     "state" VARCHAR(100),
-    "zipCode" VARCHAR(10)
+    "zipCode" VARCHAR(10),
+    "initialSessionDuration" INTERVAL,
+    "regularSessionDuration" INTERVAL
 );
 
 CREATE TABLE "Teams" (

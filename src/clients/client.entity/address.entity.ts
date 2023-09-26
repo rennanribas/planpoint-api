@@ -26,6 +26,12 @@ import { Appointment } from '../../appointments/appointment.entity/appointment.e
   
       @Column({ type: 'varchar', length: 10 })
       zipCode: string;
+
+      @Column({ type: 'interval' })
+      initialSessionDuration: string;
+
+      @Column({ type: 'interval' })
+      regularSessionDuration: string;
   
       @ManyToOne(() => Client, client => client.addresses)
       client: Client;
