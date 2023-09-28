@@ -13,10 +13,10 @@ export class Appointment {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({ type: 'timestamp', name: 'startDate' })
+    @Column({ type: 'timestamp' })
     startDate: Date;
 
-    @Column({ type: 'timestamp', name: 'endDate' })
+    @Column({ type: 'timestamp' })
     endDate: Date;
 
     @Column({ type: 'text', nullable: true }) 

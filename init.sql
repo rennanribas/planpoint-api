@@ -28,8 +28,8 @@ CREATE TABLE "Teams" (
 
 CREATE TABLE "Appointments" (
     "id" SERIAL PRIMARY KEY,
-    "startDate" DATE NOT NULL,
-    "endDate" DATE NOT NULL,
+    "startDate" TIMESTAMP NOT NULL,
+    "endDate" TIMESTAMP NOT NULL,
     "comments" TEXT,
     "addressId" UUID REFERENCES "Addresses"("id") ON DELETE CASCADE,
     "teamId" INTEGER REFERENCES "Teams"("id") ON DELETE CASCADE

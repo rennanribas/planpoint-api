@@ -77,13 +77,15 @@ export default class AppointmentSeeder {
                 const overlappingAppointments = await appointmentRepo.find({
                     where: {
                         address: appointment.address,
-                        startDate: Between(appointment.startDate, appointment.endDate),
                     },
                 });
 
                 if (overlappingAppointments.length > 0) {
                     continue;
                 }
+
+                console.log('start', appointment.startDate)
+                console.log('end', appointment.endDate)
 
                 await connection.manager.save(appointment);
 
