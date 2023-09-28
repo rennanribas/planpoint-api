@@ -1,79 +1,93 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+Cleaning Schedule API
+Overview
+A simple API for managing cleaning schedules. This API allows you to create, read, update, and delete clients, addresses, teams, and appointments for scheduling cleaning sessions. It also provides endpoints for managing team availabilities for different days of the week.
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Getting Started
+To get started with this API, follow the steps below:
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Clone the Repository:
 
-## Description
+bash
+Copy code
+git clone https://github.com/seu-usuario/cleaning-schedule-api.git
+Install Dependencies:
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+bash
+Copy code
+cd cleaning-schedule-api
+npm install
+Set Environment Variables:
+Create a .env file in the project root directory and configure the following environment variables:
 
-## Installation
+bash
+Copy code
+DATABASE_URL=postgresql://username:password@localhost:5432/database_name
+Database Setup:
+This API uses PostgreSQL as the database. You can use Docker Compose to set up a PostgreSQL database for development purposes. Run the following commands:
 
-```bash
-$ npm install
-```
+bash
+Copy code
+npm run db:start   # Starts the PostgreSQL container
+npm run db:init    # Initializes the database with seed data
+npm run db:stop    # Stops the PostgreSQL container
+Start the API:
 
-## Creating and running database
+bash
+Copy code
+npm run start:dev
+The API should now be running and accessible at http://localhost:3000. You can explore the API endpoints using tools like Postman or curl.
 
-```bash
-$ docker-compose up
-```
+API Endpoints
+GET /clients: Retrieve a list of all clients.
 
-## Running the app
+POST /clients: Create a new client.
 
-```bash
-# development
-$ npm run start
+GET /clients/{id}: Retrieve a specific client by ID.
 
-# watch mode
-$ npm run start:dev
+PUT /clients/{id}: Update a specific client by ID.
 
-# production mode
-$ npm run start:prod
-```
+DELETE /clients/{id}: Delete a specific client by ID.
 
-## Test
+GET /appointments: Retrieve a list of all appointments.
 
-```bash
-# unit tests
-$ npm run test
+POST /appointments: Create a new appointment.
 
-# e2e tests
-$ npm run test:e2e
+GET /appointments/{id}: Retrieve a specific appointment by ID.
 
-# test coverage
-$ npm run test:cov
-```
+PUT /appointments/{id}: Update a specific appointment by ID.
 
-## Support
+DELETE /appointments/{id}: Delete a specific appointment by ID.
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+GET /appointments/address/{id}: Retrieve appointments for a specific address.
 
-## Stay in touch
+GET /appointments/address/{addressId}/team/{teamId}: Retrieve appointments for a specific address and team.
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+GET /teams: Retrieve a list of all teams.
 
-## License
+POST /teams: Create a new team.
 
-Nest is [MIT licensed](LICENSE).
+GET /teams/{id}: Retrieve a specific team by ID.
+
+PUT /teams/{id}: Update a specific team by ID.
+
+DELETE /teams/{id}: Delete a specific team by ID.
+
+GET /availabilities: Retrieve a list of all team availabilities.
+
+POST /availabilities: Create a new team availability.
+
+GET /availabilities/{id}: Retrieve a specific team availability by ID.
+
+PUT /availabilities/{id}: Update a specific team availability by ID.
+
+DELETE /availabilities/{id}: Delete a specific team availability by ID.
+
+Dependencies
+NestJS: A progressive Node.js framework for building efficient and scalable server-side applications.
+TypeORM: An Object-Relational Mapping (ORM) library for TypeScript and JavaScript.
+PostgreSQL: A powerful, open-source relational database system.
+Contributing
+If you would like to contribute to this project, please open an issue or submit a pull request on the GitHub repository.
+
+License
+This project is licensed under the UNLICENSED license.
