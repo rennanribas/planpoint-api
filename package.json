@@ -20,7 +20,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "db:start": "docker-compose up -d",
     "db:seed": "ts-node ./src/seeders/seed.ts",
-    "db:init": "npm run db:start && sleep 10 && npm run db:seed",
+    "db:init": "npm run db:start && sleep 5 && npm run db:seed",
     "db:stop": "docker-compose down"
   },
   "dependencies": {

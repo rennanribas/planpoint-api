@@ -43,17 +43,19 @@ export class AppointmentsService {
     }
 
     async findAppointmentsByAddress(addressId: string): Promise<Appointment[]> {
-        const addressWithAppointments = await this.entityManager.findOne(Address, {
-            where: { id: addressId },
-            relations: ['appointments']
+        const appointments = await this.entityManager.find(Appointment, {
+            select: ['id', 'startDate', 'endDate', 'address', 'comments'],
+            where: {
+                address: { id: addressId }
+            },
+            relations: ['address', 'team']
         });
-        
     
-        if (!addressWithAppointments) {
-            throw new NotFoundException(`Address with ID ${addressId} not found`);
+        if (!appointments || appointments.length === 0) {
+            throw new NotFoundException(`No appointments found for address with ID ${addressId}`);
         }
     
-        return addressWithAppointments.appointments;
+        return appointments;
     }
 
     async findAppointmentsByAddressAndTeam(addressId: string, teamId: number): Promise<Appointment[]> {

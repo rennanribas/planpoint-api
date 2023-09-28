@@ -8,6 +8,7 @@ import {
   } from 'typeorm';
   import { Client } from './client.entity';
 import { Appointment } from '../../appointments/appointment.entity/appointment.entity';
+import { IntervalPsql } from 'src/enums';
   
   @Entity('Addresses')
   export class Address {

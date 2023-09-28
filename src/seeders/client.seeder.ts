@@ -1,7 +1,7 @@
-import { Address } from '../clients/client.entity/address.entity';
 import { Client } from '../clients/client.entity/client.entity';
 import { Connection } from 'typeorm';
 import { v4 as uuidv4 } from 'uuid';
+import { Address } from '../clients/client.entity/address.entity';
 
 export default class ClientSeeder {
     public static async run(connection: Connection): Promise<void> {
@@ -21,8 +21,8 @@ export default class ClientSeeder {
       address1.city = 'Springfield';
       address1.state = 'IL';
       address1.zipCode = '62704';
-      address1.initialSessionDuration = '1 hour 30 mins'; 
-      address1.regularSessionDuration = '2 hours'; 
+      address1.initialSessionDuration = '2 hours';
+      address1.regularSessionDuration = '1 hours 30 minutes'; 
 
       const address2 = new Address();
       address2.id = uuidv4();
@@ -30,8 +30,8 @@ export default class ClientSeeder {
       address2.city = 'Shelbyville';
       address2.state = 'IL';
       address2.zipCode = '62521';
-      address2.initialSessionDuration = '1 hour 30 mins'; 
-      address2.regularSessionDuration = '2 hours';
+      address2.initialSessionDuration = '1 hours 30 minutes';
+      address2.regularSessionDuration = '45 minutes'; 
 
       client.addresses = [address1, address2];
       clients.push(client);

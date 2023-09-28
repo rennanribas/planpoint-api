@@ -8,3 +8,10 @@ export enum WeekDay {
     Saturday = 'Saturday',
     Sunday = 'Sunday',
   }
+
+export type IntervalPsql = {
+  days?: number;
+  hours?: number;
+  minutes?: number;
+  seconds?: number;
+}
