@@ -1,7 +1,9 @@
 version: '3.8'
 
 services:
-  cleaning-schedule-api-postgres:
+  cleaning-schedule-api-postgres: 
+    env_file:
+      - .env
     image: postgres:latest
     container_name: cleaning-schedule-api-postgres-1
     ports:
